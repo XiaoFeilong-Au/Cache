@@ -8,14 +8,14 @@ import (
 type cache struct {
 	mu         sync.Mutex
 	lru        *lru.Cache
-	CacheBytes int64
+	cacheBytes int64
 }
 
 func (c *cache) add(key string, value ByteView) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
 	if c.lru != nil {
-		c.lru = lru.NewCache(c.CacheBytes, nil)
+		c.lru = lru.NewCache(c.cacheBytes, nil)
 	}
 	c.lru.Add(key, value)
 }
