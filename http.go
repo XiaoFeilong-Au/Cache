@@ -2,15 +2,16 @@ package mycache
 
 import (
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 	"net/url"
 	"strings"
 	"sync"
-	pb "github.com/XiaoFeilong-Au/Cache/mycachepb"
+
 	"github.com/XiaoFeilong-Au/Cache/consistenthash"
-	"github.com/golang/protobuf/proto"
+	pb "github.com/XiaoFeilong-Au/Cache/mycachepb"
+	
 )
 
 const (
@@ -70,7 +71,7 @@ func (p *HTTPPool) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Write the value to the response body as a proto message.
-	body, err := proto.Marshal(&pb.Response{Value: view.ByteSlice()})
+	body, err := prot.Marshal(&pb.Response{Value: view.ByteSlice()})
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -126,7 +127,7 @@ func (h *httpGetter) Get(in *pb.Request, out *pb.Response) error {
 		return fmt.Errorf("server returned: %v", res.Status)
 	}
 
-	bytes, err := ioutil.ReadAll(res.Body)
+	bytes, err := io.ReadAll(res.Body)
 	if err != nil {
 		return fmt.Errorf("reading response body: %v", err)
 	}
