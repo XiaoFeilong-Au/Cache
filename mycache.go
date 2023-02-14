@@ -2,10 +2,10 @@ package mycache
 
 import (
 	"fmt"
-	pb "geecache/geecachepb"
-	"geecache/singleflight"
+	pb "github.com/XiaoFeilong-Au/Cache/mycachepb"
 	"log"
 	"sync"
+	"github.com/XiaoFeilong-Au/Cache/singleflight"
 )
 
 // A Group is a cache namespace and associated data loaded spread over

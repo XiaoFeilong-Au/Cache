@@ -2,15 +2,14 @@ package mycache
 
 import (
 	"fmt"
-	"geecache/consistenthash"
-	pb "geecache/geecachepb"
 	"io/ioutil"
 	"log"
 	"net/http"
 	"net/url"
 	"strings"
 	"sync"
-
+	pb "github.com/XiaoFeilong-Au/Cache/mycachepb"
+	"github.com/XiaoFeilong-Au/Cache/consistenthash"
 	"github.com/golang/protobuf/proto"
 )
 

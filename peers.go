@@ -1,5 +1,6 @@
 package mycache
 
+import pb "github.com/XiaoFeilong-Au/Cache/mycachepb"
 
 // PeerPicker is the interface that must be implemented to locate
 // the peer that owns a specific key.
